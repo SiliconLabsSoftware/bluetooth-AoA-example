@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include <stdint.h>
 
 #define SL_UNUSED_PARAMETER(param) (void) (param)
 const unsigned int SL_MAX_UART_CONNECTIONS = 3;
