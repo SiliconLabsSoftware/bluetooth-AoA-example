@@ -13,7 +13,7 @@ This is a code formatter tool that helps ensure consistent coding style and dete
 - Automatically fixes end-of-file issues.
 - Removes trailing whitespace from lines.
 - Identifies and suggests fixes for common spelling errors using [codespell](https://github.com/codespell-project/codespell).
-- Formats code according to specified [Uncrustify](https://github.com/uncrustify/uncrustify) rules base on [Silabs's coding standard](https://stash.silabs.com/projects/WMN_DOCS/repos/docs_misc/browse/software/standards/coding-standard.md)
+- Formats code according to specified [Uncrustify](https://github.com/uncrustify/uncrustify) rules base on [Silabs's coding standard](https://github.com/SiliconLabsSoftware/agreements-and-guidelines/blob/main/coding_standard.md)
 - Checks for identifiers naming style mismatch of function, definition, struct, variable using [clang-tidy](https://releases.llvm.org/14.0.0/tools/clang/tools/extra/docs/clang-tidy/index.htmlextensible)
 - Checks code for potential errors and style issues using [cppcheck](https://cppcheck.sourceforge.io/).
 
@@ -124,10 +124,8 @@ This is a sample line that should be excluded.
 
 ### Uncrustify
 
-Automatic source code formatting follows [Silabs's coding standard](https://stash.silabs.com/projects/WMN_DOCS/repos/docs_misc/browse/software/standards/coding-standard.md)
+Automatic source code formatting follows [Silabs's coding standard](https://github.com/SiliconLabsSoftware/agreements-and-guidelines/blob/main/coding_standard.md)
 The Uncrustify configuration file is located at [/tools/uncrustify.cfg](./tools/uncrustify.cfg).
-
-Base on the repo [/projects/WMN_TOOLS/repos/scripts/browse/uncrustify](https://stash.silabs.com/projects/WMN_TOOLS/repos/scripts/browse/uncrustify)
 
 
 ### Clang-Tidy
