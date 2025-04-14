@@ -13,6 +13,7 @@
   - [How to use the project](#how-to-use-the-project)
     - [Network setup](#network-setup)
     - [MQTT usage](#mqtt-usage)
+  - [Disclaimer](#disclaimer)
 
 ## Overview
 The system contains 2 MCUs an EFR32xG24 (aka host) and an EFR32BG22 antenna array (aka NCP).
@@ -57,9 +58,9 @@ Build system dependencies for ubuntu 22.04 lts systems:
 
 ### Build with CMAKE
 Usage (most modern IDE will natively support this):
-1. Go to the project directory and configure:
+1. Go to the project directory (e.g. ./locator_host/) and configure:
     ```bash
-    cmake <project_name>_cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE:STRING=<build_type>
+    cmake <project_name>_cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE:STRING=<build_type> -DCMAKE_TOOLCHAIN_FILE:STRING=toolchain.cmake
     ```
     `<project_name>` can be either `locator_host` or `locator_ncp`.
     `<build_type>` can be `Debug` or `Release`.
