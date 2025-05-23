@@ -1,116 +1,141 @@
-# Contributing to a SiliconLabs open source project
+# Contributing Guideline
+As an open-source project, we welcome and encourage the community to submit patches directly to the project.  
+In our collaborative open-source environment, standards and methods for submitting changes help reduce  
+the chaos that can result from an active development community.
 
-You want to contribute to a Silicon Labs Open Source project? Welcome! Please read this document to understand what you can do:
- * [Help Others](#help-others)
- * [Analyze Issues](#analyze-issues)
- * [Report an Issue](#report-an-issue)
- * [Contribute Code](#contribute-code)
+This document explains how to participate in project conversations, log bugs and enhancement requests,  
+and submit patches to the project so your patch will be accepted quickly into the codebase.
 
-## Help Others
+## Prerequisites
+You should be familiar with Git and GitHub. [Getting started](https://docs.github.com/en/get-started)  
+If you haven't already done so, you'll need to create a (free) GitHub account at https://github.com  
+and have Git tools available on your development system. You also need to add your email address to your account.
 
-You can help the Silicon Labs open source projects by helping others who use them and need support.
+As a contributor, you'll want to be familiar with the Silicon Labs tooling:
+- [Simplicity Studio](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-overview/)  
+- [Platform](https://docs.silabs.com/gecko-platform/latest/platform-overview/)  
+- [Simplicity Commander](https://docs.silabs.com/simplicity-commander/latest/simplicity-commander-start/)  
 
-## Analyze Issues
+Read the Silicon Labs [coding guidelines](https://github.com/SiliconLabsSoftware/agreements-and-guidelines/blob/main/coding_standard.md).  
+## Git Setup
+We need to know who you are, and how to contact you. Please ass the following information to your Git installation:
+```
+git config --global user.name "FirstName LastName"
+git config --global user.email "firstname.lastname@example.com"
+```
+set the Git configuration variables user.name to your full name, and user.email to your email address.
+The user.name must be your full name (first and last at minimum), not a pseudonym or hacker handle.  
+The email address that you use in your Git configuration must match the email address you use to sign your commits.  
 
-Analyzing issue reports can be a lot of effort. Any help is welcome!
-Go to [Issue tracker](https://github.com/SiliconLabsSoftware/bluetooth-AoA-example/issues?q=is%3Aopen+is%3Aissue)  and find an open issue which needs additional work or a bugfix (e.g. issues labeled with "help wanted" or "bug").
+If you intend to edit commits using the Github.com UI, ensure that your github profile email address and profile name also match those used in your git configuration  
+(user.name & user.email).
 
-Additional work could include any further information, or a gist, or it might be a hint that helps understanding the issue. Maybe you can even find and [contribute](#contribute-code) a bugfix?
+### Set up GitHub commit signature
 
-## Report an Issue
+**command line setup**
 
-If you find a bug - behavior of Silicon Labs Open Source projects code contradicting your expectation - you are welcome to report it.
-We can only handle well-reported, actual bugs, so please follow the guidelines below.
+The repository requires signed off commits. Follow this [guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits) how to set it up.
+1. Generate a gpg key [howto](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
+2. Configure your local repository with the gpg key. [guide]whttps://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
+3. Configure your GitHub account with the gpg key [guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/associating-an-email-with-your-gpg-key)
 
-Once you have familiarized with the guidelines, you can go to the [Create an issue](https://github.com/SiliconLabsSoftware/bluetooth-AoA-example/issues/new) to report the issue.
+**Command line steps:**  
+Use the git-bash and navigate into your local repo.
+1. disable all the gpg signature globally. (Optional)
+```
+$ git config --global --unset gpg.format
+```
+2. Create a gpg-key
+```
+$ gpg --full-generate-key
+```
+3. Configure the local repo with your new key.
+```
+$ gpg --list-secret-keys --keyid-format=long
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+/c/Users/silabsuser/.gnupg/pubring.kbx
+------------------------------------
+sec   rsa3072/1234567891234567 2025-04-09 [SC]
+      ABDGDGFDGFDGDHHSRGRG12345667912345678981
+uid                 [ultimate] Firstname Lastname <example@example.com>
+ssb   rsa3072/11098765432110981 2025-04-09 [E]
 
-### Quick Checklist for Bug Reports
+$ git config user.signingkey 1234567891234567
+```
+4. Force every commit to be signed
+```
+$ git config commit.gpgsign true
+```
+5. Export your gpg key
+```
+$ gpg --armor --export 888BA795B7085898
+```
+Make sure your email address is verified by GitHub before committing anything.
 
-Issue report checklist:
- * Real, current bug
- * No duplicate
- * Reproducible
- * Good summary
- * Well-documented
- * Minimal example
+## Licensing
+Please check the [Licensing.md](../LICENSE.md) for more details.
 
+## Contributor License Agreement
+When a project receives a contribution, it must be clear that the contributor has the rights to contribute the content and that the project then has the rights to use and otherwise operate with the content (e.g., relicense or distribute). A Contributor License Agreement (CLA) is a legal document establishing these rights and defining the terms under which a license is granted by a contributor to an open-source project. A CLA clarifies that any contribution was authorized (not contributing someone else’s code without permission or without legal authority to contribute) and protects the project from potential future legal challenges.
 
-### Issue handling process
+Please check Silicon Labs [CLA document](https://github.com/SiliconLabsSoftware/agreements-and-guidelines/blob/main/contributor_license_agreement.md).  
+During the pull request review, every new contributor must sign the CLA document. It can be signed as an individual or on behalf of a company.  
+Signatures have a 6-month expiration period.
 
-When an issue is reported, a committer will look at it and either confirm it as a real issue, close it if it is not an issue, or ask for more details.
+## Contribution process
+### Creating an Issue
+Please follow the official GitHub [guide](https://opensource.guide/how-to-contribute/#opening-an-issue).
 
-An issue that is about a real bug is closed as soon as the fix is committed.
+### Fork the repository
+When you created an issue and based on the discussion you want to contribute with your source-code.
+Branching is disabled on the public Silicon Labs repositories. You need to fork your own repo first.
+Please follow the official GitHub [guide](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
+You can create your branch on your own forked repo now.
 
+### Branch Naming Convention
+Branch naming shall follow the following template: *IssueNumber-issue-title-goes-here*  
+Example branch name:
+```
+99-bootloader-implementation
+```
+Issue number is necessary to maintain tracebility.
+Now you have a branch. You can start committing your code onto it.
 
-### Reporting Security Issues
+## Commit Messages
 
-If you find a security issue, please act responsibly and report it not in the public issue tracker, but directly to the CODE_OWNERS, so we can fix it before it can be exploited.
+Silicon Labs repositories require signed-off commits.
+Every commit represents a change inside the repository. Every change needs to be documented extensively.  
+```
+Issuenumber-summary-of-changes
 
+Detailed description what was implemented.
+Another line of really good description
+```
 
-### Usage of Labels
+## Pull Request Guideline
+Okay you finished your work committed all your changes to your branch. Time to create a pull request.  
+Refer to the general pull request [guideline](https://opensource.guide/how-to-contribute/#opening-a-pull-request) from GitHub.  
+What to consider when raising a Pull Request:  
+1. **Pull Request Naming**  
+   By default, GitHub uses the branch name as the pull request title. If the branch naming convention was followed, no changes are needed here.
+2. **Create Description**
+   Fill out the pull request template.
+3. **Check the Reviewer List**  
+   GitHub assigns reviewers based on the [CODEOWNERS](CODEOWNERS) file.  
+   Add more reviewers if needed. Do not remove reviewers from the PR. Ask the repository owner for updates to the code owners.
+4. **Evaluate the Action Workflow Results**  
+   The following workflows are included in every repository:
+   - **[Coding Convention Check](workflows/00-Check-Code-Convention.yml)**: Analyzes the code formatting and fails if any rules are broken.
+   - **[Firmware Build](workflows/02-Build-Firmware.yml)**: Builds the firmware inside the [Dockerfile](../Dockerfile).  
+   - **[Secret Scanner](workflows/04-TruffleHog-Security-Scan.yml)**: Runs the TruffleHog security scanner to look for API keys and committed secrets.
 
-GitHub offers labels to categorize issues. We defined the following labels so far:
+### As a Reviewer
 
-Labels for issue categories:
- * bug: this issue is a bug in the code
- * feature: this issue is a request for a new functionality or an enhancement request
+What to consider when reviewing a Pull Request:
 
-Status of open issues:
- * help wanted: the feature request is approved and you are invited to contribute
-
-Status/resolution of closed issues:
- * wontfix: while acknowledged to be an issue, a fix cannot or will not be provided
-
-The labels can only be set and modified by committers.
-
-
-### Issue Reporting Disclaimer
-
-We want to improve the quality of Silicon Labs Open Source projects and good bug reports are welcome! But our capacity is limited, thus we reserve the right to close or to not process insufficient bug reports in favor of those which are very cleanly documented and easy to reproduce. Even though we would like to solve each well-documented issue, there is always the chance that it will not happen - remember: these projects are open source and comes without warranty.
-
-Bug report analysis support is very welcome! (e.g. pre-analysis or proposing solutions)
-
-
-## Contribute Code
-
-You are welcome to contribute code to Silicon Labs Open Source projects in order to fix bugs or to implement new features.
-
-There are three important things to know:
-
-1.  You must be aware that you need to sign a [CLA](https://en.wikipedia.org/wiki/Contributor_License_Agreement) in order for your contribution to be accepted. This is common practice in all major Open Source projects.
-2.  There are **several requirements regarding code style, quality, and product standards** which need to be met (we also have to follow them). The respective section below gives more details on the coding guidelines.
-
-
-### Contribution Content Guidelines
-
-These are some of the rules we try to follow:
-
--   Apply a clean coding style adapted to the surrounding code, even though we are aware the existing code is not fully clean
--   Use (4)spaces for indentation (except if the modified file consistently uses tabs)
--   Use variable naming conventions like in the other files you are seeing (camelcase)
--   No console.log() - use logging service
--   Run the ESLint code check and make it succeed
--   Comment your code where it gets non-trivial
--   Keep an eye on performance and memory consumption, properly destroy objects when not used anymore
--   Write a unit test
--   Do not do any incompatible changes, especially do not modify the name or behavior of public API methods or properties
-
-### How to contribute - the Process
-
-1.  Make sure the change would be welcome (e.g. a bugfix or a useful feature); best do so by proposing it in a GitHub issue
-2.  Create a branch forking the cla-assistant repository and do your change
-3.  Commit and push your changes on that branch
-4.  In the commit message
- - Describe the problem you fix with this change.
- - Describe the effect that this change has from a user's point of view. App crashes and lockups are pretty convincing for example, but not all bugs are that obvious and should be mentioned in the text.
- - Describe the technical details of what you changed. It is important to describe the change in a most understandable way so the reviewer is able to verify that the code is behaving as you intend it to.
-5.  If your change fixes an issue reported at GitHub, add the following line to the commit message:
-    - ```Fixes #(issueNumber)```
-    - Do NOT add a colon after "Fixes" - this prevents automatic closing.
-6.  Create a Pull Request
-7.  Follow the link posted by the Silicon Labs Open Source projects to your pull request and accept it, as described in detail above.
-8.  Wait for our code review and approval, possibly enhancing your change on request
-    -   Note that the Silicon Labs Open Source projects developers also have their regular duties, so depending on the required effort for reviewing, testing and clarification this may take a while
-
-9.  Once the change has been approved we will inform you in a comment
-10.  We will close the pull request, feel free to delete the now obsolete branch
+- All builds must pass successfully.
+- The code must follow the Silicon Labs [coding guidelines](https://github.com/SiliconLabsSoftware/agreements-and-guidelines/blob/main/coding_standard.md).
+- Write clear comments. Describe the issue and explain why you disagree (e.g., mistakes, errors, violations of conventions, performance risks, security issues, etc.).
+- If any comments must be addressed mandatorily, mark the pull request as “Draft.”
